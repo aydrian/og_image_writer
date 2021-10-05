@@ -106,4 +106,11 @@ impl Context {
             Some(img) => Ok(img.into_vec()),
         }
     }
+
+    pub(super) fn get_image(mut self) -> Result<RgbaImage, Error> {
+        match self.image.take() {
+            None => Err(Error::NullElement),
+            Some(img) => Ok(img),
+        }
+    }
 }

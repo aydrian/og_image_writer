@@ -1,4 +1,4 @@
-use image::ImageError;
+use image::{ImageError, RgbaImage};
 
 use crate::Error;
 
@@ -137,6 +137,10 @@ impl<'a> OGImageWriter<'a> {
 
     pub fn into_vec(self) -> Result<Vec<u8>, Error> {
         self.context.into_vec()
+    }
+
+    pub fn image(self) -> Result<RgbaImage, Error> {
+        self.context.get_image()
     }
 
     fn paint_img(&mut self, img: Img) -> Result<(), Error> {
